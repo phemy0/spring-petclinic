@@ -14,9 +14,12 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
-        sh 'ls -ltr'
-        // build the project and create a JAR file
-        sh 'cd spring-petclinic && mvn clean package'
+        sh '''
+            echo "Workspace files:"
+            ls -ltr
+            echo "Building project with Maven..."
+            mvn clean package
+        '''
       }
     }
     stage('Static Code Analysis') {
