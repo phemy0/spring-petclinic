@@ -15,13 +15,15 @@ pipeline {
 
     stage('Build and Test') {
       steps {
-        script {
-          docker.image('maven:3.9.9-eclipse-temurin-17').inside {
-            sh 'mvn clean package -Dmaven.repo.local=/var/jenkins_home/.m2/repository'
-          }
-        }
+        sh '''
+            echo "Workspace files:"
+            ls -ltr
+            echo "Building project with Maven..."
+            mvn clean package
+        '''
       }
     }
+      
 
     stage('Static Code Analysis') {
       environment {
