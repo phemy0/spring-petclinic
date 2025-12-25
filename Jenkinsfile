@@ -12,15 +12,16 @@ pipeline {
         //git branch: 'main', url: 'https://github.com/phemy0/spring-petclinic.git'
       }
     }
-    stage('Build and Test') {
-      steps {
-        sh '''
-            echo "Workspace files:"
-            ls -ltr
-            echo "Building project with Maven..."
-            mvn clean package
-        '''
-      }
+      stage('Build and Test') {
+    steps {
+        script {
+            docker.image('maven:3.9.9-eclipse-temurin-17').inside {
+                sh 'mvn clean package -Dmaven.repo.local=/var/jenkins_home/.m2/repository'
+            }
+        }
+    }
+}
+
     }
     stage('Static Code Analysis') {
       environment {
