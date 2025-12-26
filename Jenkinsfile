@@ -1,16 +1,45 @@
-
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.2-eclipse-temurin-17'
-            args '-v /root/.m2:/root/.m2' // persist Maven cache
-        }
+    agent any
+
+    environment {
+        MAVEN_OPTS = '-Xmx1024m'
     }
+
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/phemy0/spring-petclinic.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'mvn clean install -DskipTests'
             }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        }
+        failure {
+            mail to: 'dev-team@example.com',
+                 subject: "Build Failed: ${currentBuild.fullDisplayName}",
+                 body: "Check Jenkins logs: ${env.BUILD_URL}"
         }
     }
 }
