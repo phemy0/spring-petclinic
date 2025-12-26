@@ -13,10 +13,10 @@ WORKDIR /app
 COPY --from=builder /build/target/*.jar app.jar
 
 # Environment variables (match Spring EXACTLY)
-ENV POSTGRES_URL=jdbc:postgresql://postgres-db:5432/petclinic
-ENV POSTGRES_USER=petclinic_user
-ENV POSTGRES_PASS=secret
-ENV SPRING_PROFILES_ACTIVE=pro
+ENV POSTGRES_URL=""
+ENV POSTGRES_USER=""
+ENV POSTGRES_PASS=""
+ENV SPRING_PROFILES_ACTIVE=""
 
 EXPOSE 8080
 
