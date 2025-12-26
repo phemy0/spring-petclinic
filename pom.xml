@@ -56,13 +56,6 @@
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-        <!-- Jakarta Cache API for JCache support -->
-        <dependency>
-            <groupId>jakarta.cache</groupId>
-            <artifactId>jakarta.cache-api</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-
         <!-- Ehcache as a JCache implementation -->
         <dependency>
             <groupId>org.ehcache</groupId>
