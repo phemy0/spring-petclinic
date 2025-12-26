@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.3</version>
+        <version>3.2.3</version>
         <relativePath/>
     </parent>
 
@@ -33,10 +33,15 @@
 
     <dependencies>
         <!-- Spring Boot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-cache</artifactId>
+  </dependency>
+
+  <dependency>
+      <groupId>jakarta.cache</groupId>
+      <artifactId>jakarta.cache-api</artifactId>
+  </dependency>
 
         <!-- Spring Data JPA -->
         <dependency>
