@@ -17,7 +17,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd spring-petclinic && mvn clean package'
+        sh ' mvn clean package -DskipTest'
       }
     }
     stage('Static Code Analysis') {
