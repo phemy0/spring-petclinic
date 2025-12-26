@@ -1,32 +1,22 @@
+
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.9.9-eclipse-temurin-17'
-      args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+    agent {
+        docker {
+            image 'maven:3.9.2-eclipse-temurin-17'
+            args '-v /root/.m2:/root/.m2' // persist Maven cache
+        }
     }
-  }
-  stages {
-    stage('Checkout') {
-      steps {
-        sh 'echo passed'
-        // git branch: 'main', url: 'https://github.com/phemy0/spring-petclinic.git'
-      }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install -DskipTests'
+            }
+        }
     }
+}
 
-    stage('Build and Test') {
-      steps {
-        sh '''
-            echo "Workspace files:"
-            ls -ltr
-            echo "Building project with Maven..."
-            mvn clean package 
-
-        '''
-      }
-    }
       
-
-    stage('Static Code Analysis') {
+stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://127.0.0.1:9000"
       }
