@@ -42,9 +42,7 @@ pipeline {
                  body: "Check Jenkins logs: ${env.BUILD_URL}"
         }
     }
-}
-
-      
+}      
 stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://127.0.0.1:9000"
