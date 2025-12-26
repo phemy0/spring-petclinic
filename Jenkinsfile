@@ -13,13 +13,17 @@ pipeline {
         git branch: 'main', url: 'https://github.com/phemy0/spring-petclinic.git'
       }
     }
-    stage('Build and Test') {
+    
+    stage('Clean Local Cache & Build') {
       steps {
-        sh 'ls -ltr'
-        // build the project and create a JAR file
-        sh ' mvn clean package -DskipTest'
+        // Purge local Maven repository for this project and re-download dependencies
+        sh 'mvn dependency:purge-local-repository -DreResolve=true'
+
+        // Clean and build the project
+        sh 'mvn clean package -DskipTests'
       }
     }
+    
     stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://127.0.0.1:9000"
