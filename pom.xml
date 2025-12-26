@@ -22,15 +22,14 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
-  
-        <!-- Add repository here -->
+
     <repositories>
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
         </repository>
-     </repositories>
+    </repositories>
 
     <dependencies>
         <!-- Spring Boot Web -->
@@ -43,21 +42,33 @@
         <dependency>
            <groupId>org.springframework.boot</groupId>
            <artifactId>spring-boot-starter-data-jpa</artifactId>
-       </dependency>
-       <dependency>
-           <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-validation</artifactId>
-       </dependency>
+        </dependency>
 
-       <dependency>
+        <!-- Validation -->
+        <dependency>
            <groupId>org.springframework.boot</groupId>
-           <artifactId>spring-boot-starter-web</artifactId>
-       </dependency>
+           <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
 
+        <!-- Spring Boot Cache Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
-       </dependency> 
+        </dependency>
+
+        <!-- Jakarta Cache API for JCache support -->
+        <dependency>
+            <groupId>jakarta.cache</groupId>
+            <artifactId>jakarta.cache-api</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- Ehcache as a JCache implementation -->
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.12.0</version>
+        </dependency>
 
         <!-- Hibernate Validator -->
         <dependency>
@@ -73,12 +84,6 @@
             <version>4.0.0</version>
         </dependency>
 
-        <!-- Cache (optional) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
-
         <!-- H2 Database (for testing) -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -86,14 +91,14 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Optional: Spring Boot DevTools -->
+        <!-- Spring Boot DevTools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Optional: Spring Boot Test -->
+        <!-- Spring Boot Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
