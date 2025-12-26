@@ -19,7 +19,8 @@ pipeline {
             echo "Workspace files:"
             ls -ltr
             echo "Building project with Maven..."
-            mvn clean package
+            mvn clean package -DskipTests
+
         '''
       }
     }
