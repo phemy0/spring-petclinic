@@ -20,7 +20,7 @@ pipeline {
         sh 'mvn dependency:purge-local-repository -DreResolve=true'
 
         // Clean and build the project
-        sh 'mvn clean package -DskipTests'
+        sh 'mvn clean -U package -DskipTests'
       }
     }
     
