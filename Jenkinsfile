@@ -77,6 +77,17 @@ pipeline {
                 }
             }
         }
-    } // closes stages
+    }
 
-   
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        }
+        failure {
+            mail to: 'dev-team@example.com',
+                 subject: "Build Failed: ${currentBuild.fullDisplayName}",
+                 body: "Check Jenkins logs: ${env.BUILD_URL}"
+        }
+    }
+}
